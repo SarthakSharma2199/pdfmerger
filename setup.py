@@ -10,4 +10,9 @@ setup(
     license='MIT',
     install_requires=['PyPDF2'],
     packages=["pdfmerger"],
+    entry_points={
+            'console_scripts': [
+                'pdfmerger = pdfmerger.main'
+            ]
+    }
 )
