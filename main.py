@@ -1,5 +1,6 @@
 import PyPDF2
 import argparse
+import re
 
 merger = PyPDF2.PdfFileMerger()
 parser = argparse.ArgumentParser(description="Input of pdfs to merge")
@@ -9,9 +10,11 @@ def write_final_pdf(output_file_name):
     merger.write(output)
 
 def append_pdf_selectively(pdf_file, from_page_num, to_page_num):
+    pdf_file=open(pdf_file, "rb")
     merger.append(fileobj=pdf_file, pages=(from_page_num, to_page_num))
 
 def append_pdf(pdf_file):
+    pdf_file = open(pdf_file, "rb")
     merger.append(pdf_file)
 
 #setting default name for output file
@@ -30,19 +33,31 @@ args=parser.parse_args()
 #setting custom output file name if it is supplied
 if(args.output):
     output_file_name=args.output
-    print(output_file_name)
+    check_extension=output_file_name.split('.')
+    if(check_extension[1]!="pdf"):
+        output_file_name=check_extension[0]+".pdf"
+
 
 print(args.pdf_array)
+#print(type(args.pdf_array))
 
+args.pdf_array = [i for i in args.pdf_array if i !=',']
+print(args.pdf_array)
 
-input1 = open("PDF_Samples/AutoCad_Diagram.pdf", "rb")
-input2 = open("PDF_Samples/AutoCad_Diagram.pdf", "rb")
-input3 = open("PDF_Samples/AutoCad_Diagram.pdf", "rb")
+for i in args.pdf_array:
+    check_file_name_regex="/(^.+[.pdf]{1}([\[]{1}[\]]{1}$)?)/"
+    append_selectively=0
+    pdf_name=re.search("(^.+[.pdf]{1})", i)
+    if(pdf_name):
+        pdf_name=pdf_name.group(1)
+    else:
+        continue
 
-merger.append(input1)
-merger.append(input2)
-merger.append(input3)
-
+    #checking for page argument
+    # if(not(re.search("(^.+[.pdf]{1}$)", i))):
+    #     append_selectively=1
+    #
+    # print(pdf_name)
 
 
 
