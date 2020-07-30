@@ -13,6 +13,10 @@ pip3 install git+https://github.com/SarthakSharma2199/pdfmerger.git
 ## Usage
 
 ```python
+
+pdfmerger file1.pdf , file2.pdf , file3.pdf
+#to append multiple pdfs together
+
 pdfmerger file1.pdf[1, 2, 4-8] , file2.pdf[3-7]
 #use [1, 2] to specify particular pages, or [4-8] for entire range
 #you can also use the combination of the two.
