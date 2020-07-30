@@ -7,7 +7,7 @@ A simple python based command line utility to merge and split PDF files.
 Use the package manager pip to install pdfmerger
 
 ```bash
-pip3 install https://github.com/SarthakSharma2199/pdfmerger.git
+pip3 install git+https://github.com/SarthakSharma2199/pdfmerger.git
 ```
 
 ## Usage
