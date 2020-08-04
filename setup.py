@@ -12,7 +12,8 @@ setup(
     packages=["pdfmerger"],
     entry_points={
             'console_scripts': [
-                'pdfmerger = pdfmerger.main'
+                'pdfmerger = pdfmerger.main:start_script'
             ]
     }
+
 )

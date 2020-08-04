@@ -2,3 +2,4 @@ venv
 PDF_Samples
 .idea
 *.pdf
+input_sample.txt
