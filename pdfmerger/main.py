@@ -61,11 +61,6 @@ for i in args.pdf_array:
             page_array=page_array.group(1)
         #print(page_array)
 
-    #checking for page argument
-    #
-    #
-    #
-    # print(pdf_name)
 
 
 
