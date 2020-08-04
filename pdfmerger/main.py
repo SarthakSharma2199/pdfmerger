@@ -40,7 +40,7 @@ if(args.output):
 
 
 args.pdf_array = [i for i in args.pdf_array if i !=',']
-print(args.pdf_array)
+
 
 for i in args.pdf_array:
     print(i)
@@ -53,14 +53,14 @@ for i in args.pdf_array:
     #if there is no page argument
     if (re.search("((.pdf){1}$)", i)):
         append_pdf(pdf_name)
-        #print("yes")
 
     else:
         page_array=re.search("([\[]{1}.+[\]]{1}$)", i)
         if(page_array):
             page_array=page_array.group(1)
-        #print(page_array)
-
+            from_page=int(page_array[1])-1
+            to_page=int(page_array[3])
+            append_pdf_selectively(pdf_name, from_page, to_page)
 
 
 
