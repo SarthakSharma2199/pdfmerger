@@ -38,23 +38,28 @@ if(args.output):
         output_file_name=check_extension[0]+".pdf"
 
 
-#print(args.pdf_array)
-
 
 args.pdf_array = [i for i in args.pdf_array if i !=',']
 print(args.pdf_array)
 
 for i in args.pdf_array:
+    print(i)
     check_file_name_regex="/(^.+[.pdf]{1}([\[]{1}[\]]{1}$)?)/"
-    pdf_name=re.search("(^.+[.pdf]{1})", i)
+    pdf_name=re.search("(^.+(.pdf){1})", i)
+
     if(pdf_name):
         pdf_name=pdf_name.group(1)
-        if (re.search("(^.+[.pdf]{1}$)", i)):
-            append_pdf(pdf_name)
-        #else:
+
+    #if there is no page argument
+    if (re.search("((.pdf){1}$)", i)):
+        append_pdf(pdf_name)
+        #print("yes")
 
     else:
-        continue
+        page_array=re.search("([\[]{1}.+[\]]{1}$)", i)
+        if(page_array):
+            page_array=page_array.group(1)
+        #print(page_array)
 
     #checking for page argument
     #
